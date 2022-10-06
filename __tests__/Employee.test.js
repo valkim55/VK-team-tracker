@@ -1,5 +1,3 @@
-//const { exportAllDeclaration } = require('@babel/types');
-//const { default: test } = require('node:test');
 const Employee = require('../lib/Employee');
 
 // test creating class constructor for Employee

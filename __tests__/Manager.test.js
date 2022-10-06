@@ -1,6 +1,4 @@
-// const { default: test } = require('node:test');
 const Manager = require('../lib/Manager');
-
 
 test('creates a manager object', () => {
     const manager = new Manager('name', 'employeeID', 'email', 'officeNumber');

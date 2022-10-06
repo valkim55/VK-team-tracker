@@ -1,4 +1,3 @@
-
 const Intern = require('../lib/Intern');
 
 test('creates intern object', () => {
