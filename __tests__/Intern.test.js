@@ -17,7 +17,7 @@ test("get intern's name", () => {
 
 test("get intern's employee ID", () => {
     const intern = new Intern('Snorlax');
-    expect(intern.getEmployeeID()).toEqual(expect.any(Number));
+    expect(intern.getID()).toEqual(expect.any(Number));
 });
 
 test("get intern's email", () => {
