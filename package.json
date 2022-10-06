@@ -18,5 +18,9 @@
   "homepage": "https://github.com/valkim55/VK-employee-generator#readme",
   "devDependencies": {
     "jest": "^29.1.2"
+  },
+  "dependencies": {
+    "sane-email-validation": "^3.0.1",
+    "validate-phone-number-node-js": "^0.0.1"
   }
 }
