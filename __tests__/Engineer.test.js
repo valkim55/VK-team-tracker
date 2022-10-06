@@ -12,7 +12,7 @@ test('creates a new engineer object', () => {
     expect(engineer.github).toBe('github');
 })
 
-test('gets managers name', () => {
+test('get engineer name', () => {
     const engineer = new Engineer('Psyduck');
     
     /* const myMock = jest.fn();
@@ -21,26 +21,20 @@ test('gets managers name', () => {
     expect(engineer.getName()).toEqual(expect.any(String));
 })
 
-test('gets managers employee ID', () => {
+test('get engineers employee ID', () => {
     const engineer = new Engineer('Psyduck');
-    /* const myMock = jest.fn();
-    myMock.mockReturnValue(true); */
     expect(engineer.getID()).toEqual(expect.any(Number));
 })
 
-test('gets managers email', () => {
+test('get engineers email', () => {
     const engineer = new Engineer('Psyduck');
-    /* const myMock = jest.fn();
-    myMock.mockReturnValue(true); */
     expect(engineer.getEmail()).toBeTruthy();
 })
 
-test('gets managers role', () => {
+test('get engineers role', () => {
     const engineer = new Engineer('Psyduck');
     const roles = ['Manager', 'Engineer', 'Intern'];
     [isManager = 'Manager', isEngineer = 'Engineer', isIntern = 'Inter'] = roles;
-    /* const myMock = jest.fn();
-    myMock.mockReturnValue(true); */
     expect(engineer.getRole()).toEqual(isEngineer);
 })
 
