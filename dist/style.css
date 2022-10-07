@@ -1,0 +1,25 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    padding: 200px 30px 30px 30px;
+    text-shadow: 2px 2px darkgrey;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.hero {
+    background-image: url('../src/images/background.jpg');
+    background-size: auto;
+}
+
+main {
+    width: 95%;
+    margin: auto;
+}
+
+.img {
+    
+}
