@@ -8,11 +8,13 @@
     text-shadow: 2px 2px darkgrey;
     text-align: center;
     margin-bottom: 0;
+    font-weight: 1000;
+    color: whitesmoke;
 }
 
 .hero {
     background-image: url('../src/images/background.jpg');
-    background-size: auto;
+    background-size:cover;
 }
 
 main {

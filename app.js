@@ -4,11 +4,8 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 
 const fs = require('fs');
-const write = require('write');
-const generatePage = require('./src/page-template');
-const generateEngineer = require('./src/page-template');
-const generateIntern = require('./src/page-template');
-const {getManagerInfo, getEngineerInfo, getInternInfo} = require('./utils');
+const {generatePage, generateEngineer, generateIntern} = require('./src/page-template');
+const {getManagerInfo, getEngineerInfo, getInternInfo} = require('./util-functions');
 
 
 const internsArray = [];
@@ -21,8 +18,8 @@ getManagerInfo().then(answers => { // doesn't have to be named 'answers' - just 
     this.officeNumber = answers.officeNumber;
     const manager = new Manager(this.name, this.employeeID, this.email, this.officeNumber);
     console.log(manager);
-    const pageHTML = generatePage(manager);
-    fs.writeFile('./src/index.html', pageHTML, err => {
+    
+    fs.writeFile('./dist/index.html', generatePage(manager), err => {
         if(err) throw err;
         console.log('HTML created!')
     });
@@ -33,21 +30,30 @@ getManagerInfo().then(answers => { // doesn't have to be named 'answers' - just 
             this.email = engineerAnswers.email;
             this.github = engineerAnswers.github;
             const engineer = new Engineer(this.name, this.employeeID, this.email, this.github);
-            engineersArray.push(engineer);
-            console.log(engineersArray);
-            const writeEngineer = generateEngineer(engineersArray);
-            write('./src/index.html', writeEngineer, err => {
-                if(err) throw err;
-                console.log(`couldn't write engineer ${err}`);
-            })
-            if(engineerAnswers.addEmployee == 'engineer') {
-                return getEngineerInfo();
-            } else if(engineerAnswers.addEmployee == 'intern') {
-                return getInternInfo();
-            } else {
-                console.log(engineersArray);
-                return;
+
+            // if there's no engineer with this information in the array already then push newly created object into the array
+            if(!engineersArray.engineer) {
+                engineersArray.push(engineer);
             }
+            console.log(engineersArray);
+
+            // using appendFile method to add information into an existing file
+            fs.appendFile('./dist/index.html', generateEngineer(engineersArray), err => {
+                if(err) throw err;
+                console.log('engineer added to the page!');
+            });
+
+            if(engineerAnswers.addEmployee == 'engineer') {
+                return new Promise(resolve => {
+                    resolve(getEngineerInfo());
+                }) 
+            } else if(engineerAnswers.addEmployee == 'intern') {
+                return new Promise(resolve => {
+                    resolve(getInternInfo());
+                }) 
+            }; 
+            
+            
         });
     } else if(answers.addEmployee == 'intern') {
         getInternInfo().then(internAnswers => {
@@ -57,19 +63,26 @@ getManagerInfo().then(answers => { // doesn't have to be named 'answers' - just 
             this.email = internAnswers.email;
             this.school = internAnswers.school;
             const intern = new Intern(this.name, this.employeeID, this.email, this.school);
-            internsArray.push(intern);
-            console.log(internsArray);
-            if(internAnswers.addEmployee == 'engineer') {
-                return getEngineerInfo();
-            } else if(internAnswers.addEmployee =='intern') {
-                return getInternInfo();
-            } else {
-                console.log(internsArray);
-                return;
+            
+            if(!internsArray.intern) {
+                internsArray.push(intern);
             }
+            console.log(internsArray);
+
+            fs.appendFile('./dist/index.html', generateIntern(internsArray), err => {
+                if(err) throw err;
+                console.log('intern has been added to the page!');
+            });
+
+            if(internAnswers.addEmployee == 'engineer') {
+                return new Promise(resolve => {
+                    resolve(getEngineerInfo());
+                })
+            } else if(internAnswers.addEmployee =='intern') {
+                return new Promise(resolve => {
+                    resolve(getInternInfo());
+                })
+            };
         })
-    } else {
-        return;
-    }
-   
+    };   
 });
