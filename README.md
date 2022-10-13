@@ -31,6 +31,7 @@ You can also find more details in _package.json_ file located in the root direct
 <br/><br/>
 
 > ### **Sample Page**
+You can follow this link to the video demonstration of how the application works here: [video](https://drive.google.com/file/d/18IRv4A1Rd46MR7CJspcFYgTMyCePWdVA/view) <br>
 Below is a generated sample webpage of this application where you can see how the data is displayed in the browser. <br>
 <img src='./src/images/sample.png' width="700">
 <br/><br/>
