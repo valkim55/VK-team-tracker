@@ -22,6 +22,7 @@
   "dependencies": {
     "inquirer": "^8.2.4",
     "sane-email-validation": "^3.0.1",
-    "validate-phone-number-node-js": "^0.0.1"
+    "validate-phone-number-node-js": "^0.0.1",
+    "write": "^2.0.0"
   }
 }

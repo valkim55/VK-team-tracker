@@ -1,8 +1,7 @@
 
 
-module.exports = teamMembersData => {
-    console.log(teamMembersData);
-    const {manager, ...employees} = teamMembersData;
+module.exports = manager => {
+    
     return `
     <!DOCTYPE html>
     <html lang="en">
@@ -13,7 +12,7 @@ module.exports = teamMembersData => {
         <title>The Office</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" integrity="sha512-HqxHUkJM0SYcbvxUw5P60SzdOTy/QVwA1JJrvaXJv4q7lmbDZCmZaqz01UPOaQveoxfYRv1tHozWGPMcuTBuvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./style.css">
     </head>
     <body>
         
@@ -28,16 +27,16 @@ module.exports = teamMembersData => {
             <div class="card mx-3 my-3" style="max-width: 540px">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="https://www.kindpng.com/picc/m/141-1416575_pokemon-snorlax-png-5-png-image-transparent.png" class="img-fluid rounded-start" alt="Pokemon as manager's profile image">
+                        <img src="https://www.kindpng.com/picc/m/141-1416575_pokemon-snorlax-png-5-png-image-transparent.png" class="img-fluid rounded-center" alt="Pokemon as manager's profile image">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">Manager</h5>
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item">${Object.values(manager)[0]}</li>
+                                <li class="list-group-item">${manager.name}</li>
                                 <li class="list-group-item">${manager.employeeID}</li>
-                                <li class="list-group-item"><a href="mailto:snorlax#gmail.com">Contact at: ${manager.email}</a></li>
-                                <li class="list-group-item"><a href="tel:+13474208817">Office number: ${manager.officeNumber}</a></li>
+                                <li class="list-group-item"><a href="mailto:${manager.email}">Contact at: ${manager.email}</a></li>
+                                <li class="list-group-item"><a href="tel:+1${manager.officeNumber}">Office number: ${manager.officeNumber}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -51,3 +50,64 @@ module.exports = teamMembersData => {
     `;
 };
 
+// add engineer card if present
+const generateEngineer = engineersArray => {
+    console.log(engineersArray);
+    const engArrayHTML = engineersArray.map(({name, employeeID, email, github}) => {
+        return `
+        <div class="card mx-3 my-3" style="max-width: 540px">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="https://www.kindpng.com/picc/m/135-1350264_gengar-png-transparent-png.png" class="img-fluid rounded-center" alt="Pokemon as engineer's profile image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Engineer</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${name}</li>
+                        <li class="list-group-item">${employeeID}</li>
+                        <li class="list-group-item"><a href="mailto:${email}">Contact at: ${email}</a></li>
+                        <li class="list-group-item"><a href="https://github.com/${github}">Visit GitHub profile: ${github}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        `;
+    });
+
+    return `
+        ${engArrayHTML.join('')}
+    `
+};
+
+// add intern card if present
+const generateIntern = internsArray => {
+    console.log(internsArray);
+    const intArrayHTML = internsArray.map(({name, employeeID, email, school}) => {
+        return `
+        <div class="card mx-3 my-3" style="max-width: 540px">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="https://www.kindpng.com/picc/m/177-1772786_sick-score-bro-pokemon-psyduck-hd-png-download.png" class="img-fluid " alt="Pokemon as engineer's profile image">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Intern</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">${name}</li>
+                        <li class="list-group-item">${employeeID}</li>
+                        <li class="list-group-item"><a href="mailto:${email}">Contact at: ${email}</a></li>
+                        <li class="list-group-item"><a href="https://google.com/search?q=${school}">School: ${school}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        </div>
+        `;
+    });
+
+    return `
+        ${intArrayHTML.join('')}
+    `
+};
