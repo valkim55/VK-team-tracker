@@ -30,9 +30,10 @@ The following Node.js packages were installed and used for this application: <br
 You can also find more details in _package.json_ file located in the root directory
 <br/><br/>
 
-<p> 
-to test if the phone number is a valid value, install:
-npm i validate-phone-number-node-js
+> ### **Sample Page**
+Below is a generated sample webpage of this application where you can see how the data is displayed in the browser. <br>
+<img src='./src/images/sample.png' width="700">
+<br/><br/>
 
 > Thank you for visiting!
 If you have any questions or would like to leave a feedback as a user, please feel free to reach out [here💬](https://www.linkedin.com/in/valeriya-kim-763572204/) 
